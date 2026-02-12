@@ -1,15 +1,27 @@
+import java.util.Scanner;
+
 public class Game {
-
     public static void main(String[] args) {
-
         int step = 0;
         int personX;
         int personY;
-        int personLive = 5;
+        int personLive = 3;
         int sizeBoard = 5;
+        personX = sizeBoard / 2;
+        personY = sizeBoard / 2;
         personX = 1 + sizeBoard / 2;
         personY = 1 + sizeBoard / 2;
-        System.out.println("Привет! Ты готов начать играть в игру? (Напиши: ДА или НЕТ)");
-
+        String person = "Я";
+        String monster = "М";
+        String gamingField = "+ —— + —— + —— +\n"
+                + "|    |    |    |\n"
+                + "+ —— + —— + —— +\n"
+                + "|    | " + monster + " |    |\n"
+                + "+ —— + —— + —— +\n"
+                + "| " + person + " |    |    |\n"
+                + "+ —— + —— + —— +";
+        Scanner sc = new Scanner(System.in);
+        double answer = sc.nextDouble();
     }
+}
 }
