@@ -8,6 +8,7 @@ public class Game {
         int personY;
         int personLive = 3;
         int sizeBoard = 5;
+        int count_monster = sizeBoard * sizeBoard - sizeBoard - 1;
         int difficultGame;
         Random random = new Random();
         int castleX = random.nextInt(sizeBoard) + 1;
@@ -53,6 +54,10 @@ public class Game {
 
                 board[castleY - 1][castleX - 1] = castle;
                 board[personY - 1][ personX - 1] = person;
+
+                for (int i = 0; i <= count_monster; i++) {
+                    board[random.nextInt(sizeBoard - 1)][random.nextInt(sizeBoard)] = monster;
+                }
 
                 for (int y = 1; y <= sizeBoard; y++) {
                     System.out.println(wall);
