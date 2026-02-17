@@ -52,7 +52,7 @@ public class Game {
                 System.out.println("Ход корректный; Новые координаты: " +
                         personX + ", " + personY + "\nХод номер: " + step);
             }
-             {
+            else {
                 System.out.println("Координаты не изменены");
             }
         }
