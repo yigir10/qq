@@ -33,7 +33,8 @@ public class Game {
                 System.out.println("Выбранная сложность:\t" + difficultGame);
             }
             else {
-                System.out.println("Некорректный уровень сложности ");
+                System.out.println("Некорректный уровень сложности.");
+                System.exit(0);
             }
 
             System.out.println("Введите куда будет ходить персонаж(ход возможен только по вертикали и горизонтали на одну клетку;");
