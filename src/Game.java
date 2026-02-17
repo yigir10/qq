@@ -17,13 +17,12 @@ public class Game {
         String person = "\uD83D\uDC76\uD83C\uDFFF";
         String monster = "\uD83D\uDC79";
         String castle = "\uD83C\uDFF0";
-        String gamingField = "+ —— + —— + —— +\n"
-                + "| "+ person + " |    |    |\n"
-                + "+ —— + —— + —— +\n"
-                + "|    | " + monster + " |    |\n"
-                + "+ —— + —— + —— +\n"
-                + "|    |    |    |\n"
-                + "+ —— + —— + —— +";
+        String[][] board = new String[sizeBoard][sizeBoard];
+        for (int y = 1; y <= sizeBoard; y++) {
+            for (int x = 1; x <= sizeBoard; x++) {
+                board[y - 1][x - 1] = "  ";
+            }
+        }
         String leftBlock = " | ";
         String rightBlock = " |";
         String wall = " + —— + —— + —— + —— + —— + ";
@@ -46,39 +45,54 @@ public class Game {
             }
             while (personLive > 0 && !(castleX == personX && castleY == personY)) {
 
-                for (int yCount = 1; yCount <= sizeBoard; yCount++) {
+                for (int y = 0; y < sizeBoard; y++) {
+                    for (int x = 0; x < sizeBoard; x++) {
+                        board[y][x] = "  ";
+                    }
+                }
+
+                board[castleY - 1][castleX - 1] = castle;
+                board[personY - 1][ personX - 1] = person;
+
+                for (int y = 1; y <= sizeBoard; y++) {
                     System.out.println(wall);
-                    for (int xCount = 1; xCount <= sizeBoard; xCount++) {
+                    for (int x = 1; x <= sizeBoard; x++) {
                         System.out.print(leftBlock);
-                        if (personY == yCount && personX == xCount) {
-                            System.out.print(person);
-                        } else if (castleX == xCount && castleY == yCount) {
-                            System.out.print(castle);
-                        } else {
-                            System.out.print("  ");
-                        }
+                        System.out.print(board[y - 1][x - 1]);
                     }
                     System.out.println(rightBlock);
                 }
                 System.out.println(wall);
 
                 System.out.println("Введите куда будет ходить персонаж(ход возможен только по вертикали и горизонтали на одну клетку;");
-                System.out.println("Координаты персонажа - (x: " + personX + ", y: " + personY + "))");
-
+                System.out.println(" Координаты персонажа - (x: " + personX + ", y: " + personY + "))");
 
                 int x = scanner.nextInt();
                 int y = scanner.nextInt();
 
-                if (x != personX && y != personY) {
-                    System.out.println("Неккоректный ход");
-                } else if (Math.abs(x - personX) == 1 || Math.abs(y - personY) == 1) {
-                    personX = x;
-                    personY = y;
-                    step += 1;
-                    System.out.println("Ход корректный\nНовые координаты: " +
-                            personX + ", " + personY + "\nХод номер: " + step);
+                if ((x == personX && Math.abs(y - personY) == 1) || (y == personY && Math.abs(x - personX) == 1)) {
+
+                    if (board[y - 1][+ x - 1].equals("  ")) {
+                        board[personY - 1][personX - 1] = "  ";
+                        personX = x;
+                        personY = y;
+                        board[personY - 1][personX - 1] = person;
+                        step++;
+                        System.out.println("Ход корректный; Новые координаты: " + personX + ", " + personY + "\nХод номер: " + step);
+
+                    } else if (board[y - 1][x - 1].equals(castle)) {
+                        board[personY - 1][personX - 1] = "  ";
+                        personX = x;
+                        personY = y;
+                        board[personY - 1][personX - 1] = person;
+                        System.out.println("Вы прошли игру");
+                        break;
+
                 } else {
-                    System.out.println("Координаты не изменены");
+                    System.out.println("\uD83D\uDC80");
+                }
+                } else {
+                    System.out.println("Некорректный ход");
                 }
             }
         }
