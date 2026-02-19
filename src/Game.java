@@ -32,30 +32,27 @@ public class Game {
         Scanner scanner = new Scanner(System.in);
         String answer = scanner.nextLine();
 
-        if (answer.equalsIgnoreCase("ДА")) {
+        if (answer.equalsIgnoreCase("да")) {
+            for (int y = 0; y < sizeBoard; y++) {
+                for (int x = 0; x < sizeBoard; x++) {
+                    board[y][x] = "  ";
+                }
+            }
+
+            for (int i = 0; i <= countMonster; i++) {
+                board[random.nextInt(sizeBoard - 1)][random.nextInt(sizeBoard)] = monster;
+            }
+            board[castleY - 1][castleX - 1] = castle;
+
             System.out.println("Начинаем играть");
 
-            System.out.println("Выбери сложность игры(от 1 до 5):");
-            difficultGame = scanner.nextInt();
-            if (difficultGame > 0 && difficultGame < 6) {
-                System.out.println("Выбранная сложность:\t" + difficultGame);
-            }
-            else {
-                System.out.println("Некорректный уровень сложности.");
-                System.exit(0);
-            }
+            do {
+                System.out.println("Выбери сложность игры(от 1 до 5):");
+                difficultGame = scanner.nextInt();
+            } while (difficultGame < 1 || difficultGame > 5);
+            System.out.println("Выбранная сложность:\t" + difficultGame);
             while (personLive > 0 && !(castleX == personX && castleY == personY)) {
-                for (int y = 0; y < sizeBoard; y++) {
-                    for (int x = 0; x < sizeBoard; x++) {
-                        board[y][x] = "  ";
-                    }
-                }
 
-                for (int i = 0; i <= countMonster; i++) {
-                    board[random.nextInt(sizeBoard - 1)][random.nextInt(sizeBoard)] = monster;
-                }
-
-                board[castleY - 1][castleX - 1] = castle;
                 board[personY - 1][ personX - 1] = person;
 
                 for (int y = 1; y <= sizeBoard; y++) {
@@ -83,26 +80,22 @@ public class Game {
                         board[personY - 1][personX - 1] = person;
                         step++;
                         System.out.println("Ход корректный; Новые координаты: " + personX + ", " + personY + "\nХод номер: " + step);
-
                     } else if (board[y - 1][x - 1].equals(castle)) {
-                        board[personY - 1][personX - 1] = "  ";
-                        personX = x;
-                        personY = y;
-                        board[personY - 1][personX - 1] = person;
-                        System.out.println("Вы прошли игру");
+                        System.out.println("Вы прошли игру!!!");
                         break;
-
-                } else {
-                    System.out.println("\uD83D\uDC80");
-                    break;
+                    } else {
+                        System.out.println("Тебе нужно решить задачку!!!\nГотов?");
+                        if (!(scanner.nextLine().equalsIgnoreCase("да"))) {
+                            System.out.println("Меня не волнует."); // ДОДЕЛАТЬ
+                        }
                 }
                 } else {
-                    System.out.println("Некорректный ход");
+                    System.out.println("Некорректный ход.\nПопробуйте еще раз.");
                 }
             }
         }
         else {
-            System.out.println("Почему ты не захотел со мной играть(");
+            System.out.println("Почему ты не захотел со мной играть");
             System.out.println("Приходи ещё!");
         }
     }
