@@ -56,7 +56,9 @@ public class Game {
                 board[personY - 1][ personX - 1] = person;
 
                 for (int i = 0; i <= count_monster; i++) {
-                    board[random.nextInt(sizeBoard - 1)][random.nextInt(sizeBoard)] = monster;
+                    while !((board[castleY - 1][castleX - 1].equals(castle) || board[personY - 1][ personX - 1].equals(person)) {
+                        board[random.nextInt(sizeBoard - 1)][random.nextInt(sizeBoard)] = monster;
+                    }
                 }
 
                 for (int y = 1; y <= sizeBoard; y++) {
@@ -77,7 +79,7 @@ public class Game {
 
                 if ((x == personX && Math.abs(y - personY) == 1) || (y == personY && Math.abs(x - personX) == 1)) {
 
-                    if (board[y - 1][+ x - 1].equals("  ")) {
+                    if (board[y - 1][x - 1].equals("  ")) {
                         board[personY - 1][personX - 1] = "  ";
                         personX = x;
                         personY = y;
@@ -95,6 +97,7 @@ public class Game {
 
                 } else {
                     System.out.println("\uD83D\uDC80");
+                    break;
                 }
                 } else {
                     System.out.println("Некорректный ход");
