@@ -56,7 +56,7 @@ public class Game {
                 board[personY - 1][ personX - 1] = person;
 
                 for (int i = 0; i <= count_monster; i++) {
-                    while !((board[castleY - 1][castleX - 1].equals(castle) || board[personY - 1][ personX - 1].equals(person)) {
+                    while (!(board[castleY - 1][castleX - 1].equals(castle) || board[personY - 1][ personX - 1].equals(person))) {
                         board[random.nextInt(sizeBoard - 1)][random.nextInt(sizeBoard)] = monster;
                     }
                 }
