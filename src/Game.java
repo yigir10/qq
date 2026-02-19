@@ -8,7 +8,7 @@ public class Game {
         int personY;
         int personLive = 3;
         int sizeBoard = 5;
-        int count_monster = sizeBoard * sizeBoard - sizeBoard - 1;
+        int countMonster = sizeBoard * sizeBoard - sizeBoard - 1;
         int difficultGame;
         Random random = new Random();
         int castleX = random.nextInt(sizeBoard) + 1;
@@ -16,7 +16,7 @@ public class Game {
         personX = sizeBoard / 2 + 1;
         personY = sizeBoard / 2 + 1;
         String person = "\uD83D\uDC76\uD83C\uDFFF";
-        String monster = "\uD83D\uDC79";
+        String monster = "00";
         String castle = "\uD83C\uDFF0";
         String[][] board = new String[sizeBoard][sizeBoard];
         for (int y = 1; y <= sizeBoard; y++) {
@@ -45,21 +45,18 @@ public class Game {
                 System.exit(0);
             }
             while (personLive > 0 && !(castleX == personX && castleY == personY)) {
-
                 for (int y = 0; y < sizeBoard; y++) {
                     for (int x = 0; x < sizeBoard; x++) {
                         board[y][x] = "  ";
                     }
                 }
 
+                for (int i = 0; i <= countMonster; i++) {
+                    board[random.nextInt(sizeBoard - 1)][random.nextInt(sizeBoard)] = monster;
+                }
+
                 board[castleY - 1][castleX - 1] = castle;
                 board[personY - 1][ personX - 1] = person;
-
-                for (int i = 0; i <= count_monster; i++) {
-                    while (!(board[castleY - 1][castleX - 1].equals(castle) || board[personY - 1][ personX - 1].equals(person))) {
-                        board[random.nextInt(sizeBoard - 1)][random.nextInt(sizeBoard)] = monster;
-                    }
-                }
 
                 for (int y = 1; y <= sizeBoard; y++) {
                     System.out.println(wall);
