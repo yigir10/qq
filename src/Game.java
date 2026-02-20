@@ -85,39 +85,34 @@ public class Game {
                         scanner.nextLine();
                         String answ = scanner.nextLine();
                         if (answ.equalsIgnoreCase("да")) {
-                            int question = random.nextInt(4);
+                            int question = random.nextInt(3);
                             int numF = random.nextInt(8) + 2;
                             int numS = random.nextInt(8) + 2;
                             switch (question) {
                                 case(0):
                                     System.out.println("Сколько будет " + numF + " + " + numS + "?");
                                     if (scanner.nextInt() == numF + numS) {
-                                        System.out.println("Молодец");
+                                        System.out.println("Молодец!");
                                     } else {
+                                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A");
                                         personLive--;
                                     }
                                     break;
                                 case(1):
                                     System.out.println("Сколько будет " + numF + " - " + numS + "?");
                                     if (scanner.nextInt() == numF - numS) {
-                                        System.out.println("Молодец");
+                                        System.out.println("Молодец!");
                                     } else {
+                                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A");
                                         personLive--;
                                     }
                                         break;
                                 case(2):
                                     System.out.println("Сколько будет " + numF + " * " + numS + "?");
                                     if (scanner.nextInt() == numF * numS) {
-                                        System.out.println("Молодец");
+                                        System.out.println("Молодец!");
                                     } else {
-                                        personLive--;
-                                    }
-                                        break;
-                                case(3):
-                                    System.out.println("Сколько будет " + numF + " / " + numS + "?");
-                                    if (scanner.nextInt() == numF / numS) {
-                                        System.out.println("Молодец");
-                                    } else {
+                                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A");
                                         personLive--;
                                     }
                                         break;
