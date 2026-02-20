@@ -81,8 +81,7 @@ public class Game {
                         System.out.println("Вы прошли игру!!!");
                         break;
                     } else {
-                        System.out.println("Тебе нужно решить задачку!!!\nГотов?");
-                        scanner.nextLine();
+                        System.out.println("Тебе нужно решить задачку!!!");
                         int question = random.nextInt(3);
                         int numF;
                         int numS;
@@ -93,8 +92,15 @@ public class Game {
                                 System.out.println("Сколько будет " + numF + " + " + numS + "?");
                                 if (scanner.nextInt() == numF + numS) {
                                     System.out.println("Молодец!");
+                                    board[personY - 1][personX - 1] = "  ";
+                                    personX = x;
+                                    personY = y;
+                                    board[personY - 1][personX - 1] = person;
+                                    step++;
+                                    System.out.println("Ход корректный; Новые координаты: " + personX + ", " + personY + "\nХод номер: " + step);
                                 } else {
-                                    System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78");
+                                    System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78" +
+                                            "\nБудет " + numF + numS);
                                     personLive--;
                                 }
                                 break;
@@ -104,8 +110,15 @@ public class Game {
                                 System.out.println("Сколько будет " + numF + " - " + numS + "?");
                                 if (scanner.nextInt() == numF - numS) {
                                     System.out.println("Молодец!");
+                                    board[personY - 1][personX - 1] = "  ";
+                                    personX = x;
+                                    personY = y;
+                                    board[personY - 1][personX - 1] = person;
+                                    step++;
+                                    System.out.println("Ход корректный; Новые координаты: " + personX + ", " + personY + "\nХод номер: " + step);
                                 } else {
-                                    System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78");
+                                    System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78" +
+                                            "\nБудет" + (numF - numS));
                                     personLive--;
                                 }
                                 break;
@@ -115,8 +128,15 @@ public class Game {
                                 System.out.println("Сколько будет " + numF + " * " + numS + "?");
                                 if (scanner.nextInt() == numF * numS) {
                                     System.out.println("Молодец!");
+                                    board[personY - 1][personX - 1] = "  ";
+                                    personX = x;
+                                    personY = y;
+                                    board[personY - 1][personX - 1] = person;
+                                    step++;
+                                    System.out.println("Ход корректный; Новые координаты: " + personX + ", " + personY + "\nХод номер: " + step);
                                 } else {
-                                    System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78");
+                                    System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78" +
+                                            "\nБудет " + numF * numS);
                                     personLive--;
                                 }
                                 break;
