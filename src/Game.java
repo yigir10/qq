@@ -50,7 +50,7 @@ public class Game {
             while (!(castleX == personX && castleY == personY)) {
 
                 if (personLive == 0) {
-
+                    System.out.println("  ");
                 } else if (personLive < 0) {
                     System.out.println("СМЭРТЬ");
                 }
@@ -74,7 +74,7 @@ public class Game {
                 int x = scanner.nextInt();
                 int y = scanner.nextInt();
 
-                if ((x == personX && Math.abs(y - personY) == 1) || (y == personY && Math.abs(x - personX) == 1)) {
+                if (((x == personX && Math.abs(y - personY) == 1) || (y == personY && Math.abs(x - personX) == 1)) && ((x < 6 && x > 0) && (y < 6 && y > 0))) {
 
                     if (board[y - 1][x - 1].equals("  ")) {
                         board[personY - 1][personX - 1] = "  ";
