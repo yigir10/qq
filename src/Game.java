@@ -94,7 +94,7 @@ public class Game {
                                     if (scanner.nextInt() == numF + numS) {
                                         System.out.println("Молодец!");
                                     } else {
-                                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A");
+                                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78");
                                         personLive--;
                                     }
                                     break;
@@ -103,7 +103,7 @@ public class Game {
                                     if (scanner.nextInt() == numF - numS) {
                                         System.out.println("Молодец!");
                                     } else {
-                                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A");
+                                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78");
                                         personLive--;
                                     }
                                         break;
@@ -112,7 +112,7 @@ public class Game {
                                     if (scanner.nextInt() == numF * numS) {
                                         System.out.println("Молодец!");
                                     } else {
-                                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A");
+                                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78");
                                         personLive--;
                                     }
                                         break;
