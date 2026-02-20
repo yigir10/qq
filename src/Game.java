@@ -3,10 +3,11 @@ import java.util.Scanner;
 
 public class Game {
     public static void main(String[] args) {
+        int resurrections = 0;
         int step = 0;
         int personX;
         int personY;
-        int personLive = 3;
+        int personLive = 1;
         int sizeBoard = 5;
         int countMonster = sizeBoard * sizeBoard - sizeBoard - 1;
         int difficultGame;
@@ -14,11 +15,13 @@ public class Game {
         int castleX = random.nextInt(sizeBoard) + 1;
         int castleY = 1;
         personX = random.nextInt(sizeBoard) + 1;
-        personY = 5;
+        personY = sizeBoard;
         String person = "\uD83D\uDC76\uD83C\uDFFF";
         String monster = "00";
         String castle = "\uD83C\uDFF0";
         String[][] board = new String[sizeBoard][sizeBoard];
+        int numF;
+        int numS;
 
         String leftBlock = " | ";
         String rightBlock = " |";
@@ -49,8 +52,20 @@ public class Game {
             System.out.println("Выбранная сложность:\t" + difficultGame);
             while (!(castleX == personX && castleY == personY)) {
 
-                if (personLive == 0) {
-                    System.out.println("  ");
+                if (personLive == 0 && resurrections < 1) {
+                    System.out.println("Всевышний сжалился над тобой и решил дать тебе второй шанс, НО при одном условии" +
+                            "\nТы должен решить мой самый сложный пример");
+                    numF = random.nextInt(888) + 111;
+                    numS = random.nextInt(888) + 111;
+                    System.out.println("Сколько будет " + numF + " * " + numS + "?");
+                    if (scanner.nextInt() == numF * numS) {
+                        System.out.println("Молодец!");
+                        personLive++;
+                        resurrections++;
+                    } else {
+                        System.out.println("Ты проиграл!!!");
+                        break;
+                    }
                 } else if (personLive < 0) {
                     System.out.println("СМЭРТЬ");
                 }
@@ -89,8 +104,6 @@ public class Game {
                     } else {
                         System.out.println("Тебе нужно решить задачку!!!");
                         int question = random.nextInt(3);
-                        int numF;
-                        int numS;
                         switch (question) {
                             case(0):
                                 numF = random.nextInt(88) + 11;
