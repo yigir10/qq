@@ -50,9 +50,9 @@ public class Game {
                 difficultGame = scanner.nextInt();
             } while (difficultGame < 1 || difficultGame > 5);
             System.out.println("Выбранная сложность:\t" + difficultGame);
-            while (!(castleX == personX && castleY == personY)) {
+            while (!(castleX == personX && castleY == personY) && resurrections < 1) {
 
-                if (personLive == 0 && resurrections < 1) {
+                if (personLive == 0) {
                     System.out.println("Всевышний сжалился над тобой и решил дать тебе второй шанс, НО при одном условии" +
                             "\nТы должен решить мой самый сложный пример");
                     numF = random.nextInt(888) + 111;
@@ -119,7 +119,7 @@ public class Game {
                                     System.out.println("Ход корректный; Новые координаты: " + personX + ", " + personY + "\nХод номер: " + step);
                                 } else {
                                     System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78" +
-                                            "\nБудет " + numF + numS);
+                                            "\nБудет " + (numF + numS));
                                     personLive--;
                                 }
                                 break;
@@ -137,7 +137,7 @@ public class Game {
                                     System.out.println("Ход корректный; Новые координаты: " + personX + ", " + personY + "\nХод номер: " + step);
                                 } else {
                                     System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78" +
-                                            "\nБудет" + (numF - numS));
+                                            "\nБудет " + (numF - numS));
                                     personLive--;
                                 }
                                 break;
@@ -164,6 +164,9 @@ public class Game {
                 } else {
                     System.out.println("Некорректный ход.\nПопробуйте еще раз.");
                 }
+            }
+            if (personLive < 1 && resurrections < 1) {
+
             }
         }
         else {
