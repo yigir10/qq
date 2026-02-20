@@ -13,17 +13,13 @@ public class Game {
         Random random = new Random();
         int castleX = random.nextInt(sizeBoard) + 1;
         int castleY = 1;
-        personX = sizeBoard / 2 + 1;
-        personY = sizeBoard / 2 + 1;
+        personX = random.nextInt(sizeBoard) + 1;
+        personY = 5;
         String person = "\uD83D\uDC76\uD83C\uDFFF";
         String monster = "00";
         String castle = "\uD83C\uDFF0";
         String[][] board = new String[sizeBoard][sizeBoard];
-        for (int y = 1; y <= sizeBoard; y++) {
-            for (int x = 1; x <= sizeBoard; x++) {
-                board[y - 1][x - 1] = "  ";
-            }
-        }
+
         String leftBlock = " | ";
         String rightBlock = " |";
         String wall = " + —— + —— + —— + —— + —— + ";
@@ -65,8 +61,9 @@ public class Game {
                 }
                 System.out.println(wall);
 
-                System.out.println("Введите куда будет ходить персонаж(ход возможен только по вертикали и горизонтали на одну клетку;");
-                System.out.println(" Координаты персонажа - (x: " + personX + ", y: " + personY + "))");
+                System.out.println("Введите куда будет ходить персонаж(ход возможен только по вертикали и горизонтали на одну клетку;" +
+                        "\nКоординаты персонажа - (x: " + personX + ", y: " + personY + "))" +
+                        "\nКоличество жизней - " + personLive);
 
                 int x = scanner.nextInt();
                 int y = scanner.nextInt();
@@ -85,8 +82,46 @@ public class Game {
                         break;
                     } else {
                         System.out.println("Тебе нужно решить задачку!!!\nГотов?");
-                        if (!(scanner.nextLine().equalsIgnoreCase("да"))) {
-                            System.out.println("Меня не волнует."); // ДОДЕЛАТЬ
+                        scanner.nextLine();
+                        String answ = scanner.nextLine();
+                        if (answ.equalsIgnoreCase("да")) {
+                            int question = random.nextInt(4);
+                            int numF = random.nextInt(8) + 2;
+                            int numS = random.nextInt(8) + 2;
+                            switch (question) {
+                                case(0):
+                                    System.out.println("Сколько будет " + numF + " + " + numS + "?");
+                                    if (scanner.nextInt() == numF + numS) {
+                                        System.out.println("Молодец");
+                                    } else {
+                                        personLive--;
+                                    }
+                                    break;
+                                case(1):
+                                    System.out.println("Сколько будет " + numF + " - " + numS + "?");
+                                    if (scanner.nextInt() == numF - numS) {
+                                        System.out.println("Молодец");
+                                    } else {
+                                        personLive--;
+                                    }
+                                        break;
+                                case(2):
+                                    System.out.println("Сколько будет " + numF + " * " + numS + "?");
+                                    if (scanner.nextInt() == numF * numS) {
+                                        System.out.println("Молодец");
+                                    } else {
+                                        personLive--;
+                                    }
+                                        break;
+                                case(3):
+                                    System.out.println("Сколько будет " + numF + " / " + numS + "?");
+                                    if (scanner.nextInt() == numF / numS) {
+                                        System.out.println("Молодец");
+                                    } else {
+                                        personLive--;
+                                    }
+                                        break;
+                            }
                         }
                 }
                 } else {
