@@ -47,7 +47,13 @@ public class Game {
                 difficultGame = scanner.nextInt();
             } while (difficultGame < 1 || difficultGame > 5);
             System.out.println("Выбранная сложность:\t" + difficultGame);
-            while (personLive > 0 && !(castleX == personX && castleY == personY)) {
+            while (!(castleX == personX && castleY == personY)) {
+
+                if (personLive == 0) {
+
+                } else if (personLive < 0) {
+                    System.out.println("СМЭРТЬ");
+                }
 
                 board[personY - 1][ personX - 1] = person;
 
@@ -145,9 +151,6 @@ public class Game {
                 } else {
                     System.out.println("Некорректный ход.\nПопробуйте еще раз.");
                 }
-            }
-            if (personLive < 1) {
-                System.out.println("СМЭРТЬ");
             }
         }
         else {
