@@ -67,7 +67,7 @@ public class Game {
                         break;
                     }
                 } else if (personLive < 0) {
-                    System.out.println("СМЭРТЬ");
+                    System.out.println("СМЭРТ");
                 }
 
                 board[personY - 1][ personX - 1] = person;
