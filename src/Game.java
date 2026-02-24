@@ -49,7 +49,7 @@ public class Game {
             while (!(castleX == personX && castleY == personY)) {
 
                 board[personY - 1][personX - 1] = person;
-                outputBoard(board, personLive, sizeBoard);
+                outputBoard(board, sizeBoard);
 
                 if (personLive == 0 && resurrections < 1) {
                     System.out.println("Всевышний сжалился над тобой и решил дать тебе второй шанс, НО при одном условии" +
@@ -61,7 +61,7 @@ public class Game {
                         System.out.println("Молодец!");
                         personLive++;
                         resurrections++;
-                        outputBoard(board, personLive, sizeBoard);
+                        outputBoard(board, sizeBoard);
                     } else {
                         System.out.println("Ты проиграл.");
                         System.exit(1);
@@ -143,7 +143,7 @@ public class Game {
         return false;
     }
 
-    static void outputBoard(String[][] board, int personLive, int sizeBoard) {
+    static void outputBoard(String[][] board, int sizeBoard) {
         String leftBlock = " | ";
         String rightBlock = " |";
         String wall = " + —— + —— + —— + —— + —— + ";
