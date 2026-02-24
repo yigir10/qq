@@ -46,12 +46,12 @@ public class Game {
                 difficultGame = scanner.nextInt();
             } while (difficultGame < 1 || difficultGame > 5);
             System.out.println("Выбранная сложность:\t" + difficultGame);
-            while (!(castleX == personX && castleY == personY) && resurrections < 1) {
+            while (!(castleX == personX && castleY == personY)) {
 
                 board[personY - 1][personX - 1] = person;
                 outputBoard(board, personLive, sizeBoard);
 
-                if (personLive == 0) {
+                if (personLive == 0 && resurrections < 1) {
                     System.out.println("Всевышний сжалился над тобой и решил дать тебе второй шанс, НО при одном условии" +
                             "\nТы должен решить мой самый сложный пример");
                     numF = random.nextInt(888) + 111;
@@ -61,12 +61,13 @@ public class Game {
                         System.out.println("Молодец!");
                         personLive++;
                         resurrections++;
+                        outputBoard(board, personLive, sizeBoard);
                     } else {
-                        System.out.println("Ты проиграл!!!");
-                        break;
+                        System.out.println("Ты проиграл.");
+                        System.exit(1);
                     }
                 } else if (personLive < 0) {
-                    System.out.println("СМЭРТ");
+                    System.out.println("СМЭРТЬ");
                 }
 
                 System.out.println("Введите куда будет ходить персонаж(ход возможен только по вертикали и горизонтали на одну клетку;" +
@@ -86,14 +87,15 @@ public class Game {
                         step++;
                         System.out.println("Ход корректный; Новые координаты: " + personX + ", " + personY + "\nХод номер: " + step);
                     } else if (board[y - 1][x - 1].equals(castle)) {
-                        System.out.println("Вы прошли игру!!!");
+                        step++;
+                        System.out.println("Вы прошли игру!" + "\nТебе понадобилось всего " + step + " шагов!");
                         break;
                     } else {
                         if (taskMonster(difficultGame)) {
                             board[personY - 1][personX - 1] = "  ";
                             personX = x;
                             personY = y;
-                            board[personY - 1][personX - 1] = person;
+
                             step++;
                             System.out.println("Ход корректный; Новые координаты: " + personX + ", " + personY + "\nХод номер: " + step);
                         } else {
@@ -103,15 +105,17 @@ public class Game {
                 } else {
                     System.out.println("Некорректный ход.\nПопробуйте еще раз.");
                 }
-            }
-            if (personLive < 1 && resurrections < 1) {
-                System.out.println("Ты проиграл!!!");
+                if (personLive < 1 && resurrections > 0) {
+                    System.out.println("Ты проиграл!!!");
+                    break;
+                }
             }
         } else {
             System.out.println("Почему ты не захотел со мной играть");
             System.out.println("Приходи ещё!");
         }
     }
+
 
     static boolean taskMonster(int difficultGame) {
         switch (difficultGame){
