@@ -56,8 +56,8 @@ public class Game {
                             "\nТы должен решить мой самый сложный пример");
                     numF = random.nextInt(888) + 111;
                     numS = random.nextInt(888) + 111;
-                    System.out.println("Сколько будет " + numF + " * " + numS + "?");
-                    if (scanner.nextInt() == numF * numS) {
+                    System.out.println("Сколько будет " + numF + " + " + numS + "?");
+                    if (scanner.nextInt() == numF + numS) {
                         System.out.println("Молодец!");
                         personLive++;
                         resurrections++;
