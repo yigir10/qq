@@ -89,7 +89,7 @@ public class Game {
                         System.out.println("Вы прошли игру!!!");
                         break;
                     } else {
-                        if (taskMonster(difficultGame,resurrections)) {
+                        if (taskMonster(difficultGame)) {
                             board[personY - 1][personX - 1] = "  ";
                             personX = x;
                             personY = y;
@@ -113,7 +113,7 @@ public class Game {
         }
     }
 
-    static boolean taskMonster(int difficultGame, int ressurrections) {
+    static boolean taskMonster(int difficultGame) {
         switch (difficultGame){
             case (1):
                 Scanner scanner = new Scanner(System.in);
