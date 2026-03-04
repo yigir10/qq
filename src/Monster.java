@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Monster {
     Random random = new Random();
-    private String monster = "00";
+    private String monster = "мм";
     private int x;
     private int y;
     private int numF;
