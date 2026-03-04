@@ -6,17 +6,21 @@ public class Game {
         int resurrections = 0;
         int step = 0;
         int sizeBoard = 5;
-        int countMonster = sizeBoard * sizeBoard - sizeBoard - 1;
+        int countMonster = sizeBoard * sizeBoard - sizeBoard * 2;
         int difficultGame;
         Random random = new Random();
         int castleX = random.nextInt(sizeBoard) + 1;
         int castleY = 1;
         String castle = "\uD83C\uDFF0";
         String[][] board = new String[sizeBoard][sizeBoard];
+        int q = 0;
         int numF;
         int numS;
         Person person = new Person(sizeBoard);
-        Monster monster = new Monster();
+        Monster monster = new Monster(sizeBoard);
+        int rF;
+        int rS;
+
 
         System.out.println("Привет! Ты готов начать играть в игру? Напиши: Да :)");
         Scanner scanner = new Scanner(System.in);
@@ -29,10 +33,16 @@ public class Game {
                 }
             }
 
-            for (int i = 0; i <= countMonster; i++) {
-                board[random.nextInt(sizeBoard - 1)][random.nextInt(sizeBoard)] = monster.getMonster();
-            }
             board[castleY - 1][castleX - 1] = castle;
+
+            while (countMonster > q) {
+                rF = random.nextInt(sizeBoard - 1);
+                rS = random.nextInt(sizeBoard);
+                if (board[rF][rS].equals("  ") && !(board[rS][rF].equals(castle))) {
+                    board[rF][rS] = monster.getMonster();
+                    q++;
+                }
+            }
 
             System.out.println("Начинаем играть");
 
