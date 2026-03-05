@@ -1,12 +1,14 @@
+import java.util.Random;
 import java.util.Scanner;
 
 public class BigMonster extends Monster {
-    int numF;
-    int numS;
-    int numT;
-    int numR;
-    int numFor;
-    private String bigMonster = "ММ";
+    Random random = new Random();
+    private int numF;
+    private int numS;
+    private int numT;
+    private int numR;
+    private int numFor;
+    private String bigMonster = "БМ";
     BigMonster(int sizeBoard) {
         super(sizeBoard);
     }

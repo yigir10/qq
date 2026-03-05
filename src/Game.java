@@ -7,17 +7,20 @@ public class Game {
         int step = 0;
         int sizeBoard = 5;
         int countMonster = sizeBoard * sizeBoard - sizeBoard * 2;
+        int countBigMonster;
         int difficultGame;
         Random random = new Random();
         int castleX = random.nextInt(sizeBoard) + 1;
         int castleY = 1;
         String castle = "\uD83C\uDFF0";
         String[][] board = new String[sizeBoard][sizeBoard];
-        int q = 0;
+        int counter = 0;
         int numF;
         int numS;
         Person person = new Person(sizeBoard);
         Monster monster = new Monster(sizeBoard);
+        BigMonster bigMonster = new BigMonster(sizeBoard);
+        Bomb bomb = new Bomb();
         int rF;
         int rS;
 
@@ -35,14 +38,15 @@ public class Game {
 
             board[castleY - 1][castleX - 1] = castle;
 
-            while (countMonster > q) {
+            while (countMonster > counter) {
                 rF = random.nextInt(sizeBoard - 1);
                 rS = random.nextInt(sizeBoard);
                 if (board[rF][rS].equals("  ") && !(board[rS][rF].equals(castle))) {
                     board[rF][rS] = monster.getMonster();
-                    q++;
+                    counter++;
                 }
             }
+
 
             System.out.println("Начинаем играть");
 
@@ -51,6 +55,19 @@ public class Game {
                 difficultGame = scanner.nextInt();
             } while (difficultGame < 1 || difficultGame > 5);
             System.out.println("Выбранная сложность:\t" + difficultGame);
+
+            countBigMonster = difficultGame * 2;
+            counter = 0;
+
+            while (countBigMonster > counter) {
+                rF = random.nextInt(sizeBoard - 1);
+                rS = random.nextInt(sizeBoard);
+                if (board[rF][rS].equals("  ") || board[rF][rS].equals(bigMonster.getBigMonster())) {
+                    board[rF][rS] = bigMonster.getBigMonster();
+                    counter++;
+                }
+            }
+
             while (!(castleX == person.getX() && castleY == person.getY())) {
 
                 board[person.getY() - 1][person.getX() - 1] = person.getPerson();
@@ -93,7 +110,9 @@ public class Game {
                         step++;
                         System.out.println("Вы прошли игру!" + "\nТебе понадобилось всего " + step + " шагов!");
                         break;
-                    } else {
+                    } else if (board[y - 1][x - 1].equals(bomb.getBomb())) {
+                        //БОМБА
+                    }else {
                         if (monster.taskMonster(difficultGame)) {
                             board[person.getY() - 1][person.getX() - 1] = "  ";
                             person.move(x, y);
