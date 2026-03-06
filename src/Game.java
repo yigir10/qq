@@ -20,7 +20,7 @@ public class Game {
         Person person = new Person(sizeBoard);
         Monster monster = new Monster(sizeBoard);
         BigMonster bigMonster = new BigMonster(sizeBoard);
-        Bomb bomb = new Bomb();
+        Bomb bomb = new Bomb(sizeBoard);
         int rF;
         int rS;
 
@@ -38,15 +38,26 @@ public class Game {
 
             board[castleY - 1][castleX - 1] = castle;
 
-            while (countMonster > counter) {
-                rF = random.nextInt(sizeBoard - 1);
-                rS = random.nextInt(sizeBoard);
-                if (board[rF][rS].equals("  ") && !(board[rS][rF].equals(castle))) {
-                    board[rF][rS] = monster.getMonster();
-                    counter++;
+            Monster[] arrMonster = new Monster[countMonster + 1];
+            int count = 0;
+            Monster test;
+            while (count <= countMonster){
+                if (random.nextBoolean()) {
+                    test = new Monster(sizeBoard);
+                }else {
+                    if (random.nextBoolean()) {
+                        test = new BigMonster(sizeBoard);
+                    } else {
+                        test = new Bomb(sizeBoard);
+                    }
                 }
-            }
+                if (board[test.getY()][test.getX()].equals("  ")){
+                    board[test.getY()][test.getX()] = test.getMonster();
+                    arrMonster[count] = test;
+                    count++;
+                }
 
+            }
 
             System.out.println("Начинаем играть");
 
@@ -55,18 +66,6 @@ public class Game {
                 difficultGame = scanner.nextInt();
             } while (difficultGame < 1 || difficultGame > 5);
             System.out.println("Выбранная сложность:\t" + difficultGame);
-
-            countBigMonster = difficultGame * 2;
-            counter = 0;
-
-            while (countBigMonster > counter) {
-                rF = random.nextInt(sizeBoard - 1);
-                rS = random.nextInt(sizeBoard);
-                if (board[rF][rS].equals("  ") || board[rF][rS].equals(bigMonster.getBigMonster())) {
-                    board[rF][rS] = bigMonster.getBigMonster();
-                    counter++;
-                }
-            }
 
             while (!(castleX == person.getX() && castleY == person.getY())) {
 
@@ -112,7 +111,16 @@ public class Game {
                         break;
                     } else if (board[y - 1][x - 1].equals(bomb.getBomb())) {
                         //БОМБА
-                    }else {
+                    } else if (board[y - 1][x - 1].equals(bigMonster.getMonster())) {
+                        if (bigMonster.taskMonster(difficultGame)) {
+                            board[person.getY() - 1][person.getX() - 1] = "  ";
+                            person.move(x, y);
+                            step++;
+                            System.out.println("Ход корректный; Новые координаты: " + person.getX() + ", " + person.getY() + "\nХод номер: " + step);
+                        } else {
+                            person.reducingLives();
+                        }
+                    } else {
                         if (monster.taskMonster(difficultGame)) {
                             board[person.getY() - 1][person.getX() - 1] = "  ";
                             person.move(x, y);

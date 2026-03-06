@@ -13,11 +13,11 @@ public class BigMonster extends Monster {
         super(sizeBoard);
     }
 
-    public String getBigMonster() {
+    public String getMonster() {
         return bigMonster;
     }
 
-    public void setBigMonster() {
+    public void setMonster() {
         this.bigMonster = bigMonster;
     }
 

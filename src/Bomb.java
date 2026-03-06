@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Bomb {
+public class Bomb extends Monster {
     Random random = new Random();
     private String bomb = "()";
     private int r;
@@ -8,6 +8,7 @@ public class Bomb {
     private int y;
 
     Bomb(int sizeBoard) {
+        super(sizeBoard);
         this.x = random.nextInt(sizeBoard);
         this.y = 3;
     }
