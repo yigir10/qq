@@ -7,22 +7,18 @@ public class Game {
         int step = 0;
         int sizeBoard = 5;
         int countMonster = sizeBoard * sizeBoard - sizeBoard * 2;
-        int countBigMonster;
         int difficultGame;
         Random random = new Random();
         int castleX = random.nextInt(sizeBoard) + 1;
         int castleY = 1;
         String castle = "\uD83C\uDFF0";
         String[][] board = new String[sizeBoard][sizeBoard];
-        int counter = 0;
         int numF;
         int numS;
         Person person = new Person(sizeBoard);
         Monster monster = new Monster(sizeBoard);
         BigMonster bigMonster = new BigMonster(sizeBoard);
         Bomb bomb = new Bomb(sizeBoard);
-        int rF;
-        int rS;
 
 
         System.out.println("Привет! Ты готов начать играть в игру? Напиши: Да :)");
@@ -41,15 +37,11 @@ public class Game {
             Monster[] arrMonster = new Monster[countMonster + 1];
             int count = 0;
             Monster test;
-            while (count <= countMonster){
+            while (count < countMonster){
                 if (random.nextBoolean()) {
                     test = new Monster(sizeBoard);
                 }else {
-                    if (random.nextBoolean()) {
-                        test = new BigMonster(sizeBoard);
-                    } else {
-                        test = new Bomb(sizeBoard);
-                    }
+                    test = new BigMonster(sizeBoard);
                 }
                 if (board[test.getY()][test.getX()].equals("  ")){
                     board[test.getY()][test.getX()] = test.getMonster();
@@ -88,7 +80,7 @@ public class Game {
                         System.exit(1);
                     }
                 } else if (person.getPersonLive() < 0) {
-                    System.out.println("СМЭРТЬ");
+                    System.out.println("СМЕРТЬ");
                 }
 
                 System.out.println("Введите куда будет ходить персонаж(ход возможен только по вертикали и горизонтали на одну клетку;" +
