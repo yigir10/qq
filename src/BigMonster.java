@@ -121,13 +121,13 @@ public class BigMonster extends Monster {
                         numF = random.nextInt(90) + 10;
                         numS = random.nextInt(90) + 10;
                     }
-                    System.out.println("Тебе нужно решить задачку!!!\nСколько будет " + numF + " / " + numS + "?");
-                    if (numF / numS * numT * numFor== scanner.nextInt()) {
+                    System.out.println("Тебе нужно решить задачку!!!\nСколько будет " + numF + " + " + numS + " * " + numT + " + " + numFor + "?");
+                    if (numF + numS * numT + numFor== scanner.nextInt()) {
                         System.out.println("Молодец!");
                         return true;
                     }
                     System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78" +
-                            "\nБудет " + (numF / numS * numT * numFor));
+                            "\nБудет " + (numF + numS * numT + numFor));
                 }
                 break;
         }

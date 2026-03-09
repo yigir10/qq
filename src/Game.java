@@ -16,10 +16,6 @@ public class Game {
         int numF;
         int numS;
         Person person = new Person(sizeBoard);
-        Monster monster = new Monster(sizeBoard);
-        BigMonster bigMonster = new BigMonster(sizeBoard);
-        Bomb bomb = new Bomb(sizeBoard);
-
 
         System.out.println("Привет! Ты готов начать играть в игру? Напиши: Да :)");
         Scanner scanner = new Scanner(System.in);
@@ -76,11 +72,9 @@ public class Game {
                         resurrections++;
                         outputBoard(board, sizeBoard);
                     } else {
-                        System.out.println("Ты проиграл.");
-                        System.exit(1);
+                        System.out.println("Ты проиграл!!!");
+                        break;
                     }
-                } else if (person.getPersonLive() < 0) {
-                    System.out.println("СМЕРТЬ");
                 }
 
                 System.out.println("Введите куда будет ходить персонаж(ход возможен только по вертикали и горизонтали на одну клетку;" +
@@ -101,25 +95,17 @@ public class Game {
                         step++;
                         System.out.println("Вы прошли игру!" + "\nТебе понадобилось всего " + step + " шагов!");
                         break;
-                    } else if (board[y - 1][x - 1].equals(bomb.getBomb())) {
-                        //БОМБА
-                    } else if (board[y - 1][x - 1].equals(bigMonster.getMonster())) {
-                        if (bigMonster.taskMonster(difficultGame)) {
-                            board[person.getY() - 1][person.getX() - 1] = "  ";
-                            person.move(x, y);
-                            step++;
-                            System.out.println("Ход корректный; Новые координаты: " + person.getX() + ", " + person.getY() + "\nХод номер: " + step);
-                        } else {
-                            person.reducingLives();
-                        }
                     } else {
-                        if (monster.taskMonster(difficultGame)) {
-                            board[person.getY() - 1][person.getX() - 1] = "  ";
-                            person.move(x, y);
-                            step++;
-                            System.out.println("Ход корректный; Новые координаты: " + person.getX() + ", " + person.getY() + "\nХод номер: " + step);
-                        } else {
-                            person.reducingLives();
+                        for (Monster monster : arrMonster) {
+                            if (monster.conflictPerson(x, y)) {
+                                if (monster.taskMonster(difficultGame)) {
+                                    board[person.getY() - 1][person.getX() - 1] = "  ";
+                                    person.move(x, y);
+                                } else {
+                                    person.reducingLives();
+                                }
+                                break;
+                            }
                         }
                     }
                 } else {

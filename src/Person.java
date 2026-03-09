@@ -38,7 +38,7 @@ public class Person {
         this.y = y;
     }
     public boolean isMoveCorrect(int x, int y) {
-        return (this.x == x && Math.abs(this.y - y) == 1 || this.y == y && Math.abs(this.x - x) == 1); // && (this.x < 6 && this.x > 0) && (this.y < 6 && this.y > 0)
+        return (this.x == x && Math.abs(this.y - y) == 1 || this.y == y && Math.abs(this.x - x) == 1) && (this.x < 6 && this.x > 0) && (this.y < 6 && this.y > 0);
     }
     public void reducingLives() {
         personLive--;
