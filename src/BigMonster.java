@@ -12,9 +12,11 @@ public class BigMonster extends Monster {
     public String getMonster() {
         return bigMonster;
     }
-
     public void setMonster() {
         this.bigMonster = bigMonster;
+    }
+    public boolean isBomb() {
+        return super.isBomb();
     }
 
     @Override

@@ -30,6 +30,9 @@ public class Monster {
     public boolean conflictPerson(int perX, int perY){
         return perY - 1 == this.y && perX - 1 == this.x;
     }
+    public boolean isBomb() {
+        return false;
+    }
 
     public boolean taskMonster(int difficultGame) {
         Scanner scanner = new Scanner(System.in);
@@ -53,19 +56,17 @@ public class Monster {
                     System.out.println("Тебе нужно решить задачку!!!\nСколько будет " + numF + " + " + numS + "?");
                     if (numF + numS == scanner.nextInt()) {
                         System.out.println("Молодец!");
-                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78" +
-                                "\nБудет " + (numF + numS));
                         return true;
                     }
                 } else {
                     System.out.println("Тебе нужно решить задачку!!!\nСколько будет " + numF + " - " + numS + "?");
                     if (numF - numS == scanner.nextInt()) {
                         System.out.println("Молодец!");
-                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78" +
-                                "\nБудет " + (numF - numS));
                         return true;
                     }
                 }
+                System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78" +
+                        "\nБудет " + (numF - numS));
                 break;
             case (3):
                 numF = random.nextInt(900) + 100;
@@ -75,19 +76,17 @@ public class Monster {
                     System.out.println("Тебе нужно решить задачку!!!\nСколько будет " + numF + " + " + numS + "?");
                     if (numF + numS == scanner.nextInt()) {
                         System.out.println("Молодец!");
-                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78" +
-                                "\nБудет " + (numF + numS));
                         return true;
                     }
                 } else {
                     System.out.println("Тебе нужно решить задачку!!!\nСколько будет " + numF + " - " + numS + "?");
                     if (numF - numS == scanner.nextInt()) {
                         System.out.println("Молодец!");
-                        System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78" +
-                                "\nБудет " + (numF - numS));
                         return true;
                     }
                 }
+                System.out.println("Надо было слушать на уроках математики \uD83D\uDD2A" + "\uD83E\uDE78" +
+                        "\nБудет " + (numF - numS));
                 break;
             case (4):
                 numF = random.nextInt(90) + 10;

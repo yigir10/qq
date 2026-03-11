@@ -37,7 +37,11 @@ public class Game {
                 if (random.nextBoolean()) {
                     test = new Monster(sizeBoard);
                 }else {
-                    test = new BigMonster(sizeBoard);
+                    if (random.nextBoolean()) {
+                        test = new BigMonster(sizeBoard);
+                    } else {
+                        test = new Bomb(sizeBoard);
+                    }
                 }
                 if (board[test.getY()][test.getX()].equals("  ")){
                     board[test.getY()][test.getX()] = test.getMonster();
@@ -98,11 +102,19 @@ public class Game {
                     } else {
                         for (Monster monster : arrMonster) {
                             if (monster.conflictPerson(x, y)) {
-                                if (monster.taskMonster(difficultGame)) {
+                                if (monster.isBomb()) {
+                                    if (!monster.taskMonster(difficultGame)) {
+                                        person.reducingLives();
+                                    }
                                     board[person.getY() - 1][person.getX() - 1] = "  ";
                                     person.move(x, y);
                                 } else {
-                                    person.reducingLives();
+                                    if (monster.taskMonster(difficultGame)) {
+                                        board[person.getY() - 1][person.getX() - 1] = "  ";
+                                        person.move(x, y);
+                                    } else {
+                                        person.reducingLives();
+                                    }
                                 }
                                 break;
                             }
